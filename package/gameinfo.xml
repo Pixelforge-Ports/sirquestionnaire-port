@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gameList>
+  <game>
+    <path>./Sir Questionnaire.sh</path>
+    <name>Sir Questionnaire</name>
+    <desc>Explore a dungeon through pairs of choices, collect equipment and learn how to defeat its creatures.</desc>
+    <releasedate>20221208T000000</releasedate>
+    <developer>Orangepixel</developer>
+    <publisher>Orangepixel / HandyGames</publisher>
+    <genre>Rpg</genre>
+    <image>./sirquestionnaire/screenshot.png</image>
+  </game>
+</gameList>

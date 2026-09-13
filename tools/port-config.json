@@ -1,0 +1,9 @@
+{
+  "id": "sirquestionnaire",
+  "title": "Sir Questionnaire",
+  "script": "Sir Questionnaire.sh",
+  "zip": "SirQuestionnaire.zip",
+  "game_file": "SirQuestionnaire.jar",
+  "mapping": "sirquestionnaire.ini",
+  "runtime_libraries": false
+}

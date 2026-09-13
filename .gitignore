@@ -1,0 +1,21 @@
+build/
+dist/
+package/sirquestionnaire/SirQuestionnaire.jar
+package/sirquestionnaire/runtime/*.jar
+package/sirquestionnaire/saves/
+package/sirquestionnaire/cache/
+package/sirquestionnaire/resolution.txt
+package/sirquestionnaire/log.txt
+__pycache__/
+*.pyc
+
+# Generated/private content
+ports/
+build/
+dist/
+package/sirquestionnaire/SirQuestionnaire.jar
+package/sirquestionnaire/runtime/*-host.jar
+package/sirquestionnaire/saves/
+package/sirquestionnaire/cache/
+package/sirquestionnaire/log.txt
+package/sirquestionnaire/resolution.txt

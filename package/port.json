@@ -1,0 +1,43 @@
+{
+  "version": 4,
+  "name": "sirquestionnaire.zip",
+  "items": [
+    "Sir Questionnaire.sh",
+    "sirquestionnaire"
+  ],
+  "items_opt": [],
+  "attr": {
+    "title": "Sir Questionnaire",
+    "porter": [
+      "Pixelforge ports (Ronax)"
+    ],
+    "desc": "Explore a dungeon through pairs of choices, collect equipment and learn how to defeat its creatures.",
+    "desc_md": null,
+    "inst": "Install SirQuestionnaire.zip, then copy your owned SirQuestionnaire.jar into the installed sirquestionnaire folder. See sirquestionnaire.md for supported files and installation steps. Requires compatible 64-bit ARM firmware and PortMaster Java 17 and Westonpack runtimes.",
+    "inst_md": null,
+    "genres": [
+      "rpg",
+      "strategy"
+    ],
+    "image": null,
+    "rtr": false,
+    "exp": false,
+    "runtime": [
+      "weston_pkg_0.2.squashfs",
+      "zulu17.54.21-ca-jre17.0.13-linux.squashfs"
+    ],
+    "reqs": [],
+    "arch": [
+      "aarch64"
+    ],
+    "min_glibc": "2.27",
+    "availability": "paid",
+    "store": [
+      {
+        "name": "GOG",
+        "gameurl": "https://www.gog.com/en/game/sir_questionnaire",
+        "developerurl": "https://orangepixel.net/"
+      }
+    ]
+  }
+}
