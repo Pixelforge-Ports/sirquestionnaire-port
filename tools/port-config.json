@@ -2,8 +2,13 @@
   "id": "sirquestionnaire",
   "title": "Sir Questionnaire",
   "script": "Sir Questionnaire.sh",
-  "zip": "SirQuestionnaire.zip",
-  "game_file": "SirQuestionnaire.jar",
+  "zip": "sirquestionnaire.zip",
+  "game_file": "gamedata/SirQuestionnaire.jar",
   "mapping": "sirquestionnaire.ini",
-  "runtime_libraries": false
+  "runtime_libraries": true,
+  "directories": [
+    "gamedata",
+    "libs.aarch64"
+  ],
+  "library_lock": "bundled-libraries.json"
 }

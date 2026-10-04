@@ -6,6 +6,7 @@ public class ArcadeCanvas implements com.badlogic.gdx.ApplicationListener {
     public static com.orangepixel.plugins.Social mySocial;
     public static com.orangepixel.plugins.OrangePreferences myPreferences;
     public static int GameState;
+    public static void setPixelFrameBuffers() { throw new UnsupportedOperationException(); }
     public void create() { throw new UnsupportedOperationException(); }
     public void resize(int width, int height) { throw new UnsupportedOperationException(); }
     public void render() { throw new UnsupportedOperationException(); }

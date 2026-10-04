@@ -1,0 +1,2 @@
+Place your owned SirQuestionnaire.jar here.
+See sirquestionnaire/README.md for the supported build and SHA-256.

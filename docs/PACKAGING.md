@@ -7,7 +7,7 @@
 - [gptokeyb2 source and license](https://github.com/PortsMaster/gptokeyb2)
 
 The game page supplies the developer, publisher and Windows release date used in `gameinfo.xml`.
-MewnBase uses Cairn4's v1.0 release announcement date. Game versions and fingerprints
+Game versions and fingerprints
 are based on the inspected owned installation, not on assumptions about the latest download.
 The supplied PortMaster complete reference guided the layout; executable runtime catalog
 keys and checker behavior were verified against the PortMaster implementation.

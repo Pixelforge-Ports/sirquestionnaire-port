@@ -1,4 +1,4 @@
-Porter: Pixelforge ports (Ronax)
+Porter: Pixelforge Ports (Ronax)
 
 Launcher, display.inc, controller mapping, documentation and build tools:
 LICENSE-sirquestionnaire.txt (MIT, including retained BinaryCounter launcher attribution).
@@ -7,4 +7,4 @@ Screenshot: NOTICE-sirquestionnaire-assets.txt (original game rights, not MIT).
 gptokeyb controller mapper: LICENSE-gptokeyb.txt (GPL-2.0).
 The mapper executable, Java and Westonpack are supplied separately by PortMaster.
 Their complete runtime distributions retain their upstream licenses.
-No third-party library JARs or native binaries are bundled in this port ZIP.
+The port bundles libjpeg.so.8 for Java runtime compatibility; its license is LICENSE-libjpeg-turbo.txt.

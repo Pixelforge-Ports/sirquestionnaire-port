@@ -19,3 +19,6 @@ package/sirquestionnaire/saves/
 package/sirquestionnaire/cache/
 package/sirquestionnaire/log.txt
 package/sirquestionnaire/resolution.txt
+
+package/sirquestionnaire/gamedata/*.jar
+package/sirquestionnaire/runtime/lib/*.jar

@@ -1,20 +1,12 @@
 ## Notes
 
-Thanks to [Orangepixel](https://orangepixel.net/) for creating **Sir Questionnaire**. Explore a dungeon through pairs of choices, collect equipment and learn how to defeat its creatures.
-
-Porter: **Pixelforge ports (Ronax)**.
-
-This universal **SirQuestionnaire.zip** is a bring-your-own-data PortMaster package for compatible
-**64-bit ARM Linux firmware**. Supply the owned game files below. PortMaster provides Java 17
-and Westonpack. Device testing is requested for muOS on RG34XX SP and other RGXX models,
-R36S with compatible firmware, and other ARM64 handhelds. A device name alone does not guarantee
-a compatible 64-bit userspace or graphics driver.
+Thanks to [Orangepixel](https://orangepixel.net/) for creating **Sir Questionnaire**. Explore a dungeon through pairs of choices, collect equipment and learn how to defeat its creatures. PortMaster adaptation by **Pixelforge Ports (Ronax)**.
 
 ## Get SirQuestionnaire.jar from GOG
 
 1. Open [Sir Questionnaire on GOG](https://www.gog.com/en/game/sir_questionnaire) in your owned library and download the **full Windows offline backup installer** for the supported build (1.8.5b). Download every accompanying `.bin` part, if listed, and keep them beside the `.exe`. Use the full installer, not a patch or the Galaxy installer.
 2. Run the installer on Windows and open the installed game directory. Find `SirQuestionnaire.jar` beside the game executable. Enable file extensions in Explorer so its name is visible.
-3. Copy that file unchanged into the installed port at `<ports directory>/sirquestionnaire/SirQuestionnaire.jar`. Keep its exact name, capitalization and spaces. The Windows EXE and bundled Windows Java runtime are not needed.
+3. Copy that file unchanged into the installed port at `<ports directory>/sirquestionnaire/gamedata/SirQuestionnaire.jar`. Keep its exact name, capitalization and spaces. The Windows EXE and bundled Windows Java runtime are not needed.
 
 Alternatively, extract your full offline installer using [innoextract](https://constexpr.org/innoextract/).
 Run `innoextract -d extracted "your-full-offline-installer.exe"`, then locate `SirQuestionnaire.jar`
@@ -36,19 +28,13 @@ or `sha256sum "SirQuestionnaire.jar"` on Linux. A different build needs a compat
 
 ## Installation
 
-1. Update PortMaster. Put **SirQuestionnaire.zip** in PortMaster's `autoinstall/` directory, then open PortMaster to install it. Connect to the network to download Java 17 and Westonpack if they are not installed yet.
-2. Copy the owned file to **`<ports directory>/sirquestionnaire/SirQuestionnaire.jar`**.
+1. Update PortMaster. Put **sirquestionnaire.zip** in PortMaster's `autoinstall/` directory, then open PortMaster to install it. Connect to the network to download Java 17 and Westonpack if they are not installed yet.
+2. Copy the owned file to **`<ports directory>/sirquestionnaire/gamedata/SirQuestionnaire.jar`**.
 3. Launch **Sir Questionnaire** from your firmware's ports menu.
 
-For manual installation on **muOS**, extract the ZIP on your computer and copy `Sir Questionnaire.sh`
-to `<SD card>/roms/PORTS/`, and the `sirquestionnaire/` folder to `<SD card>/ports/` on the card
-configured as the firmware's ports location. The required file is
-**`<SD card>/ports/sirquestionnaire/SirQuestionnaire.jar`**.
+The launcher detects display size and uses the native viewport: **4:3** at **640x480** and **1024x768**, **3:2** at **720x480**, **1:1** at **720x720**, and **16:9** at **1280x720**. Other valid PortMaster dimensions follow the same screen-matching layout. Combat messages, Floor/Level/XP labels and item descriptions use full-width lettering with capital heights of **17 pixels at 480p**, **19 pixels at 720x720**, and **21 pixels at 1024x768 and 1280x720**. Combat messages stay in a fixed header beside the top icon, showing at most three complete lines per page so long messages do not expand over the floor or character. Floor and Level/XP share a row below the equipment icons during gameplay. Item details wrap in a separate panel below the inventory grid. Long combat messages and item descriptions advance between pages of complete lines every 3.5 seconds; dots indicate the current page. Letters are never clipped by a scrolling window. Other interface text uses the existing handheld sizing; large headings keep their original size. Square screens use a separate inventory view. If detection is wrong, put the actual size, such as `720x480`, in `sirquestionnaire/resolution.txt`; use `auto` or remove the file to restore automatic detection.
 
-For **ArkOS/dArkOS and standard ports layouts**, extract the ZIP into your configured
-ports directory (for example `/roms/ports/` or `/roms2/ports/`) so `Sir Questionnaire.sh` and
-`sirquestionnaire/` are beside each other. Use the firmware's configured ports location; the launcher
-uses PortMaster's `directory` value. Avoid creating an extra `SirQuestionnaire/` wrapper folder.
+Back up **`sirquestionnaire/saves/`** before updating. If startup fails, check **`sirquestionnaire/log.txt`**. When reporting a problem, include the device, firmware version, resolution, reproduction steps, and log. Keep purchased game files private.
 
 ## Controls
 
@@ -73,37 +59,6 @@ uses PortMaster's `directory` value. Avoid creating an extra `SirQuestionnaire/`
 
 Use the game's default keyboard bindings. Start sends **O** for options.
 
-## Controller support
-
-All input is supplied through PortMaster's gptokeyb2 and the shipped `.ini` mapping.
-Update PortMaster before installing. Native Xbox 360 emulation is not enabled in this
-host: its native controller path is disabled. The mapper's `-x` mode replaces keyboard
-and mouse output and requires a working native controller backend in the game.
-Do not add `-x` to this launcher; it would bypass the controls listed above.
-
-## Display
-
-The display helper accepts 640x480, 720x480, 720x720, 1024x768 and 1280x720, and other
-valid dimensions supplied by PortMaster. The host preserves the game view's aspect ratio;
-black borders may appear. This includes RG35XX/RG40XX/R36S, RG34XX/SP, CubeXX, TrimUI Brick
-and Smart Pro display shapes when their firmware and hardware meet the runtime requirements.
-
-If automatic detection is incorrect, create `sirquestionnaire/resolution.txt` containing the actual
-size, for example `720x480`. Use `auto` or remove the file to restore automatic detection.
-
-## Saves and troubleshooting
-
-Back up **`sirquestionnaire/saves/`** before updates.
-Read **`sirquestionnaire/log.txt`** if startup fails. Report your device, exact firmware version,
-resolution and steps to reproduce, and attach the log. Test menu navigation, gameplay,
-audio, game speed, save/reload, suspend/resume and clean exit. Keep purchased game files private.
-
-## Licenses
-
-The original port and host use the MIT license; their separate notices and the gptokeyb
-GPL license are in `sirquestionnaire/licenses/`. Upstream copyright notices remain intact.
-The game and screenshot retain Orangepixel's rights. Java, Westonpack and the mapper are installed separately by PortMaster.
-
 ## Build the PortMaster package
 
 Requires Python 3.9+ and JDK 17 or newer. **No purchased JAR or DAT is required to compile
@@ -125,9 +80,11 @@ The first build downloads checksum-pinned public compile dependencies. Later bui
 only `org/portmaster/sirquestionnaire/` host classes go into `sirquestionnaire-host.jar`.
 
 
-The only release artifact is **`dist/SirQuestionnaire.zip`**, a universal BYO-data ZIP.
+The only release artifact is **`dist/sirquestionnaire.zip`**, a universal BYO-data ZIP.
 The build also prepares **`ports/sirquestionnaire/`** in the PortMaster source submission layout.
-It never packages the owned game archive, MewnBase data, Windows runtimes or personal saves.
+It never packages the owned game archive, Windows runtimes or personal saves.
+Each full build compiles a fresh host under `build/artifacts/`; `package/` files remain unchanged.
+The ZIP keeps `README.md` as supplied.
 After editing package documentation or controls, rebuild with:
 
 ```sh
@@ -140,8 +97,16 @@ a supplied archive's fingerprint; it does not participate in compilation. Downlo
 public compile dependency does not supply the commercial game. Copy the owned files after installing.
 
 Run `bash tests/verify_display.sh` for display-helper checks. Run `python tests/verify_launcher.py` for lifecycle checks. These tests use
-mock runtimes and do not mount or run games. See `VALIDATION.md` for the recorded checks
-and `testing_thread.txt` for the Discord testing post. Upload source files using Git;
+mock runtimes and do not mount or run games. See `testing_thread.txt` for the Discord testing post. Upload source files using Git;
 `build/`, `dist/`, generated `ports/` and owned data are excluded by `.gitignore`.
 
 The Discord draft stays in source `testing_thread.txt`; it is not installed by the ZIP.
+
+To check menus, quest text, combat messages, stats and inventory with your owned game JAR after building, run:
+
+```sh
+python tools/verify_resolutions.py --java "/path/to/java17/bin/java" --jdk "/path/to/installed/jdk" --game-jar "/path/to/SirQuestionnaire.jar" --interface
+```
+
+Use quoted Windows paths and `java.exe` on Windows. This runs desktop checks at the five
+listed resolutions using separate test saves; handheld performance and controls still need device testing.

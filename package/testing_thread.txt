@@ -1,20 +1,20 @@
 Sir Questionnaire - PortMaster testing
-Porter: Pixelforge ports (Ronax)
+Porter: Pixelforge Ports (Ronax)
 
 Game: https://www.gog.com/en/game/sir_questionnaire
-Package: SirQuestionnaire.zip (BYO data; attach the built ZIP to this post)
-
+Package: sirquestionnaire.zip
 Install:
-Update PortMaster, put SirQuestionnaire.zip in its autoinstall folder and open PortMaster.
+Update PortMaster, put sirquestionnaire.zip in its autoinstall folder and open PortMaster.
 Stay online for the Java 17 and Westonpack downloads if needed.
 Supply SirQuestionnaire.jar from your owned Windows build (1.8.5b).
-Destination: <ports directory>/sirquestionnaire/SirQuestionnaire.jar.
-On muOS: <SD card>/ports/sirquestionnaire/SirQuestionnaire.jar.
+Destination: <ports directory>/sirquestionnaire/gamedata/SirQuestionnaire.jar.
+
 Download the full Windows offline installer from your GOG library, install it
 on Windows or extract with innoextract, then copy the archive unchanged.
-See the installed sirquestionnaire.md for the checksum and manual installation instructions.
+See the installed sirquestionnaire/README.md for the checksum and download instructions.
 
 Controls:
+
 | Control | Keyboard input / action |
 |---|---|
 | D-pad up | UP / Up / navigate |
@@ -36,13 +36,16 @@ Controls:
 
 Use the game's default keyboard bindings. Start sends **O** for options.
 
-Testing checklist for this build (please include exact device and firmware version):
-[ ] muOS: RG34XX SP / other RGXX device
-[ ] ArkOS / dArkOS: R36S
-[ ] AmberELEC
-[ ] ROCKNIX: specify graphics driver
-[ ] Knulli
-[ ] Other compatible ARM64 firmware
+Testing checklist (include exact device, firmware version, graphics driver and result; mark only configurations you tested):
+[ ] muOS: RG34XX SP / other RGXX; fbdev or LibMali
+[ ] ROCKNIX: Adreno
+[ ] ROCKNIX: Panfrost
+[ ] ROCKNIX: LibMali
+[ ] dArkOS: R36S; KMSDRM / LibMali
+[ ] Knulli: specify device; KMSDRM / LibMali
+[ ] AmberELEC: specify device; legacy LibMali
+[ ] ArkOS (optional): specify device and graphics driver
+[ ] Other compatible ARM64 firmware: specify device and graphics driver
 [ ] 640x480
 [ ] 720x480
 [ ] 720x720

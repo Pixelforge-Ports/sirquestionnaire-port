@@ -5,13 +5,19 @@ import com.badlogic.gdx.backends.lwjgl3.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.glutils.HdpiMode;
 import com.orangepixel.questionnaire.myCanvas;
+import com.orangepixel.questionnaire.World;
 import com.orangepixel.plugins.Social;
+import com.orangepixel.utils.ArcadeCanvas;
+import com.orangepixel.utils.GUI;
+import com.orangepixel.utils.Render;
 import java.lang.reflect.*;
 import java.nio.file.*;
 
 /** Native desktop libGDX host. All original game code stays in the owner's jar. */
 public class Main extends myCanvas {
     public final DisplayLayout layout = new DisplayLayout();
+    private final ReadableFonts readableFonts = new ReadableFonts();
+    protected final HandheldHud handheldHud = new HandheldHud(layout);
     protected Graphics physicalGraphics;
     private GL20 physicalGl;
     private GL20 bridgeGl;
@@ -66,6 +72,7 @@ public class Main extends myCanvas {
         });
         argument_noController = true;
         super.create();
+        configureSquareView();
         InputProcessor input = Gdx.input.getInputProcessor();
         Gdx.input.setInputProcessor((InputProcessor)Proxy.newProxyInstance(Main.class.getClassLoader(),new Class<?>[]{InputProcessor.class},(self,method,args)-> {
             if (method.getName().startsWith("touch") || method.getName().equals("mouseMoved")) {
@@ -84,6 +91,7 @@ public class Main extends myCanvas {
         restoreDisplayBridge();
         layout.resize(width,height);
         super.resize(layout.gameWidth,layout.gameHeight);
+        configureSquareView();
         System.out.println("GAME_RESIZE_OK " + width + "x" + height + " view=" + layout.gameWidth + "x" + layout.gameHeight);
     }
     @Override public void render() {
@@ -96,13 +104,19 @@ public class Main extends myCanvas {
             now = System.nanoTime();
         }
         lastFrame = now; // no catch-up updates after a stall/resume
+        handheldHud.beginFrame();
         physicalGl.glDisable(GL20.GL_SCISSOR_TEST);
         physicalGl.glClearColor(0,0,0,1); physicalGl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // The original game opens its separate inventory only for width < height.
+        // Equal dimensions need that same layout instead of the landscape sidebar.
+        if (layout.screenWidth == layout.screenHeight && GameState == 6 && World.inInventory)
+            GameState = 21;
         super.render();
         // Ensure presentation uses the default framebuffer after offscreen rendering.
         // Restore the presentation target before capture, swap and next-frame clearing.
         Gdx.gl20.glBindFramebuffer(GL20.GL_FRAMEBUFFER,0);
         Gdx.gl20.glViewport(0,0,layout.gameWidth,layout.gameHeight);
+        handheldHud.render();
         frames++;
         int smoke = Integer.getInteger("sirquestionnaire.smokeFrames",0);
         if (smoke > 0 && frames >= smoke) {
@@ -121,13 +135,21 @@ public class Main extends myCanvas {
     @Override public void resume() { lastFrame = 0; super.resume(); }
     @Override public void dispose() {
         if (activePlayer != null) activePlayer.saveSettings();
-        try { if (ready) super.dispose(); }
+        try { handheldHud.dispose(); if (ready) super.dispose(); }
         finally { if (physicalGraphics != null) { Gdx.app = physicalApp; Gdx.graphics = physicalGraphics; Gdx.gl = physicalGl; Gdx.gl20 = physicalGl; } }
     }
 
     private static Object delegate(Object target,Method method,Object[] args) throws Throwable {
         try { return method.invoke(target,args); }
         catch (InvocationTargetException e) { throw e.getCause(); }
+    }
+    private void configureSquareView() {
+        if (layout.screenWidth != layout.screenHeight) return;
+        // Keep enough logical space for all five inventory rows on a square screen.
+        int size = layout.gameWidth / Math.max(1, layout.gameWidth/240);
+        Render.width = Render.height = size;
+        Render.maxVertical = 240;
+        ArcadeCanvas.setPixelFrameBuffers();
     }
     private void restoreDisplayBridge() {
         if (bridgeGraphics != null) { Gdx.graphics = bridgeGraphics; Gdx.gl = bridgeGl; Gdx.gl20 = bridgeGl; }
@@ -136,7 +158,11 @@ public class Main extends myCanvas {
         final int[] framebuffer = {0};
         GL20 gl = (GL20)Proxy.newProxyInstance(Main.class.getClassLoader(),new Class<?>[]{GL20.class},(self,method,args)-> {
             String name = method.getName();
-            if (name.equals("glBindFramebuffer")) framebuffer[0] = (Integer)args[1];
+            if (name.equals("glBindFramebuffer")) {
+                framebuffer[0] = (Integer)args[1];
+                handheldHud.prepare(framebuffer[0] == 0);
+                readableFonts.apply(GUI.fonts, layout.screenWidth, layout.screenHeight, framebuffer[0] == 0);
+            }
             if (framebuffer[0] == 0 && (name.equals("glViewport") || name.equals("glScissor"))) {
                 args = new Object[]{layout.viewportX((Integer)args[0]),layout.viewportY((Integer)args[1]),
                     layout.viewportWidth((Integer)args[2]),layout.viewportHeight((Integer)args[3])};
